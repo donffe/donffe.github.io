@@ -1,0 +1,932 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Windows10+TensorFlow2 安装, CV;DL;ML">
+    <meta name="description" content="1 前言　　之前使用的一直是TensorFlow 1.x 版本，在家无聊改装2.x的版本玩。 
+2 CPU版安装2.1 本机环境
+Anaconda 
+Windows 10 x64bit
+笔记本渣渣GPU 1.0算力，CPU版不需要
+已装有v">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Windows10+TensorFlow2 安装 | Donffe</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Donffe</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Donffe</div>
+        <div class="logo-desc">
+            
+            为一线微茫憧憬一意孤行，这众生芸芸谁不曾如此任性
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Windows10+TensorFlow2 安装</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+                                <span class="chip bg-color">配置环境</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                深度学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-05-08
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2020-05-08
+                </div>
+                
+
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h4><p>　　之前使用的一直是<strong>TensorFlow 1.x</strong> 版本，在家无聊改装2.x的版本玩。 </p>
+<h4 id="2-CPU版安装"><a href="#2-CPU版安装" class="headerlink" title="2 CPU版安装"></a>2 CPU版安装</h4><h5 id="2-1-本机环境"><a href="#2-1-本机环境" class="headerlink" title="2.1 本机环境"></a>2.1 本机环境</h5><ul>
+<li>Anaconda </li>
+<li>Windows 10 x64bit</li>
+<li>笔记本渣渣GPU 1.0算力，CPU版不需要</li>
+<li>已装有vs2017</li>
+</ul>
+<h5 id="2-2-创建Python环境"><a href="#2-2-创建Python环境" class="headerlink" title="2.2 创建Python环境"></a>2.2 创建Python环境</h5><p>　　我一般都新创建一个anaconda环境来配置，这样之前配置好的不会受影响。<br>　　在Anaconda Prompt中，输入以下命令来创建一个anaconda环境：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">            conda create -n your_env_name python&#x3D;X.X</span><br></pre></td></tr></table></figure><br>　　其中，<strong>your_env_name</strong>为需要创建的环境名称，我使用tf2env。<strong>X.X</strong>为需要指定创建的python版本，这里我使用3.6。<br>　　使用<code>activate your_env_name</code>进入环境。<br>　　使用<code>deactivate your_env_name</code>退出环境。<br>　　使用<code>conda env remove -n your_env_name</code>删除环境。<br>　　使用国外源安装太慢，所以先对pip进行配置，添加清华源。  </p>
+<h5 id="2-3-安装TensorFow"><a href="#2-3-安装TensorFow" class="headerlink" title="2.3 安装TensorFow"></a>2.3 安装TensorFow</h5><p>　　在安装过程中遇到了一些小问题，放在后面章节中，这里直接说成功的配置。<br>　　（1）python 3.6<br>　　（2）tensorflow 2.0.0 （cpu）<br>　　在激活环境情况下，使用以下命令安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow&#x3D;&#x3D;2.0.0</span><br></pre></td></tr></table></figure>
+<p>　　安装过程中会安装一系列依赖库，最好还是先更换镜像源。<br>　　安装完成后，输入python进入python环境，然后输入<code>import tensorflow as tf</code>进行测试，导入成功则说明安装成功，出现问题，转向解决问题章节。<br>　　需要退出python环境可以使用exit()。  </p>
+<p><img src="data:image/png;base64,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" alt="导入成功"><br>  <center><font size=3> 图1 导入成功</font></center><br>　　在python环境中输入tf.<strong>version</strong> 查看tensorflow版本。  </p>
+<p><img src="data:image/png;base64,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" alt="查看版本信息"><br>  <center><font size=3> 图2 查看版本信息</font></center></p>
+<h5 id="2-4-解决问题（DLL-Load-Failed）"><a href="#2-4-解决问题（DLL-Load-Failed）" class="headerlink" title="2.4 解决问题（DLL Load Failed）"></a>2.4 解决问题（DLL Load Failed）</h5><p>　　升级pip时，可能存在无法移动问题，直接使用以下语句来强制更新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  python -m pip install -U --force-reinstall pip</span><br></pre></td></tr></table></figure>
+<p>　　安装时，可能存在setuptools版本不匹配问题，将setuptools由原来的36.0升级到41.0.0。<br>　　一开始我使用的是tensorflow2.1.0，出现找不到指定模块的情况。先进行更新pip、升级setuptools，发现没用。<br>　　接着卸载tensorflow重装，还是找不到指定模块。<br>　　尝试升级numpy后重装tensorflow，还是没用。<br>　　网上说，可能是vs2015运行库的问题，但是电脑上已经装了vs2017，问题不在这。<br>　　最后尝试更换tensorflow版本，采用2.0.0版本，出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;utf-8&#39; codec can&#39;t decode byte 0xa1 in position 44: invalid start byte</span><br></pre></td></tr></table></figure>
+<p>　　重新安装，安装成功。  </p>
+<h4 id="3-GPU版安装"><a href="#3-GPU版安装" class="headerlink" title="3 GPU版安装"></a>3 GPU版安装</h4><h5 id="3-1-本机环境"><a href="#3-1-本机环境" class="headerlink" title="3.1 本机环境"></a>3.1 本机环境</h5><ul>
+<li>Anaconda </li>
+<li>Windows 10 x64bit</li>
+<li>台式 GPU：GTX 1060 6G 内存：16G</li>
+<li>已装有vs2017</li>
+<li>CUDA 10.0</li>
+<li>CUDNN 7 x64bit</li>
+</ul>
+<h5 id="3-2-安装GPU版"><a href="#3-2-安装GPU版" class="headerlink" title="3.2 安装GPU版"></a>3.2 安装GPU版</h5><p>　　先去英伟达官网下载cuda并安装。<br>　　接着下载cudnn放到cuda安装目录下的cuda文件夹下，并在系统环境变量中添加cudnn的bin路径。<br>　　然后创建环境python环境，进入环境后，pip安装tensorflow2.0.0 gpu版即可。</p>
+<h4 id="4-测试及解决问题"><a href="#4-测试及解决问题" class="headerlink" title="4 测试及解决问题"></a>4 测试及解决问题</h4><h5 id="4-1-测试代码"><a href="#4-1-测试代码" class="headerlink" title="4.1 测试代码"></a>4.1 测试代码</h5><p>　　测试代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> layers</span><br><span class="line">print(tf.__version__)</span><br><span class="line">print(tf.keras.__version__)</span><br><span class="line">inputs = tf.keras.Input(shape=(<span class="number">784</span>,), name=<span class="string">'img'</span>)</span><br><span class="line">h1 = layers.Dense(<span class="number">32</span>, activation=<span class="string">'relu'</span>)(inputs)</span><br><span class="line">h2 = layers.Dense(<span class="number">32</span>, activation=<span class="string">'relu'</span>)(h1)</span><br><span class="line">outputs = layers.Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)(h2)</span><br><span class="line">model = tf.keras.Model(inputs=inputs, outputs=outputs, name=<span class="string">'mnist_model'</span>)</span><br><span class="line">model.summary()</span><br><span class="line">tf.keras.utils.plot_model(model, <span class="string">'mnist_model.png'</span>)</span><br><span class="line">tf.keras.utils.plot_model(model, <span class="string">'model_info.png'</span>, show_shapes=<span class="literal">True</span>)</span><br><span class="line">(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()</span><br><span class="line">x_train = x_train.reshape(<span class="number">60000</span>, <span class="number">784</span>).astype(<span class="string">'float32'</span>) /<span class="number">255</span></span><br><span class="line">x_test = x_test.reshape(<span class="number">10000</span>, <span class="number">784</span>).astype(<span class="string">'float32'</span>) /<span class="number">255</span></span><br><span class="line">model.compile(optimizer=tf.keras.optimizers.RMSprop(),</span><br><span class="line">             loss=<span class="string">'sparse_categorical_crossentropy'</span>, </span><br><span class="line">             metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">history = model.fit(x_train, y_train, batch_size=<span class="number">8</span>, epochs=<span class="number">2</span>, validation_split=<span class="number">0.2</span>)<span class="comment">#64</span></span><br><span class="line">test_scores = model.evaluate(x_test, y_test, verbose=<span class="number">0</span>)</span><br><span class="line">print(<span class="string">'test loss:'</span>, test_scores[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">'test acc:'</span>, test_scores[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h5 id="4-2-解决问题"><a href="#4-2-解决问题" class="headerlink" title="4.2 解决问题"></a>4.2 解决问题</h5><p>（1）在创建模型时，出现缺少库的问题：Failed to import pydot。<br>　　安装pydot和graphviz。结果运行后还是有问题。尝试安装pip install pydot-ng。<br>　　接着问题变成：InvocationException: GraphViz’s executables not found。<br>　　先尝试安装pip install pydotplus。安装后还是GraphViz的问题。<br>　　下载安装GraphViz2.38，然后在开头添加环境变量代码（其实可以一劳永逸设置在系统环境变量里里）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">os.environ[&quot;PATH&quot;] +&#x3D; os.pathsep + &#39;xxx&#x2F;Graphviz2.38&#x2F;bin&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+<p>　　成功后，创建模型之后自动绘制出模型的结构。</p>
+<p>  <img src="data:image/png;base64,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" alt="模型结构"><br>  <center><font size=3> 图3 模型结构</font></center><br>（2）在执行模型时发生错误：ValueError: ‘mnist model’ is not a valid scope name.<br>　　原因：model的名字被命名成了“mnist model”，中间有个空格，这是无效的命名，改为“mnist_model”就正常了。顺便将batch改小，由64改为8。运行两个epoch方便测试。</p>
+<p> <img src="data:image/png;base64,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" alt="测试结果"><br>  <center><font size=3> 图4 测试结果</font></center></p>
+
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+                                    <span class="chip bg-color">配置环境</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/05/08/Windows10-Tensorflow2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Windows10+TensorFlow2 安装">
+                        
+                        <span class="card-title">Windows10+TensorFlow2 安装</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1 前言　　之前使用的一直是TensorFlow 1.x 版本，在家无聊改装2.x的版本玩。 
+2 CPU版安装2.1 本机环境
+Anaconda 
+Windows 10 x64bit
+笔记本渣渣GPU 1.0算力，CPU版不需要
+已装有v
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    深度学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+                        <span class="chip bg-color">配置环境</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/02/20/%E6%A2%85%E5%AD%90%E8%8C%B6%E6%B3%A1%E9%A5%AD/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="梅子茶泡饭">
+                        
+                        <span class="card-title">梅子茶泡饭</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            梅子茶泡饭简单、平淡酸中带甜，涩中留香。不羡慕别人的生活，做好自己。
+
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
+                                    生活
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%94%9F%E6%B4%BB/">
+                        <span class="chip bg-color">生活</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BF%83%E6%83%85/">
+                        <span class="chip bg-color">心情</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: Donffe<br />'
+            + 'Author: Donffe<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020# 年份</span>
+            <a href="https://donffe.github.io" target="_blank">Donffe</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/donffe" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:donffe@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/z16.model.json"},"display":{"position":"right","width":250,"height":500},"mobile":{"show":true}});</script></body>
+
+</html>
